@@ -1,11 +1,12 @@
 # flask_boilerplate
-Flask api implementation with a sample user story.
+A repository with goal to make a flask API developer life easier, thus not only integrates libraries but also covered a simple API implementation.
 
 It utilizes below libraries,
 1. Flask SqlAlchemy (Wrapper on SqlAlchemy)
 2. Flask Migrate (Wrapper on Alembic)
 3. Flask Manager (Wrapper on Flask Scripts)
 4. Gunicorn (Web Server)
+5. Psycopg2 to interact with Postgres instance
 
 **Features**
 - Complete end to end implementation of a CRUD user story.
@@ -36,6 +37,10 @@ Application is divided in 4 layers.
 
 ### Steps to Configure
 
+#### Dependencies
+Postgresql instance is up and running
+Python 3+ is installed
+
 #### Step1 - Clone repository
 Clone the repository,
 
@@ -49,9 +54,13 @@ APP_DB_* configurations are must to be cofigured as they lead to the database wi
 Thus create your database which you have mentioned in APP_DB_DATABASE in .env file and confirm connectivity.
 
 #### Step3 - Install project dependencies
-Install project dependencies using,
+Install libraries used in project,
 
-```pip install -r requirements.txt```
+```
+virtualenv --python=python3 venv --no-site-packages
+source venv/bin/activate
+pip install -r requirements.txt
+```
 
 
 #### Step4 - Run database migrations
