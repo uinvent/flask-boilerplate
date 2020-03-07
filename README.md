@@ -26,7 +26,7 @@ It utilizes below libraries,
 - Integration with swagger
 - Standardized Api request and response formats
 
-##Layered Architecure
+## Layered Architecure
 Application is divided in 4 layers.
 
 1. Root - It holds infrastructure files, that runs whole application.
@@ -34,27 +34,27 @@ Application is divided in 4 layers.
 3. Models - It holds all code files relevant to database models.
 4. Migrations - It holds all code files relevant to database migrations.
 
-##Steps to Configure
+### Steps to Configure
 
-#####Step1 - Clone repository
+#### Step1 - Clone repository
 Clone the repository,
 
 ```git clone https://github.com/uinvent/flask_boilerplate.git```
 
-####Step2 - Setup environment configurations
+#### Step2 - Setup environment configurations
 Create a copy of .env.sample and name it as .env. Fill it with your machine configurations.
 
 APP_DB_* configurations are must to be cofigured as they lead to the database with which APIs would be talking.
 
 Thus create your database which you have mentioned in APP_DB_DATABASE in .env file and confirm connectivity.
 
-####Step3 - Install project dependencies
+#### Step3 - Install project dependencies
 Install project dependencies using,
 
 ```pip install -r requirements.txt```
 
 
-####Step4 - Run database migrations
+#### Step4 - Run database migrations
 Navigate to root folder and type
  
 `python manage.py db upgrade`
@@ -63,7 +63,7 @@ This will run two migrations,
  1. First will create two sample tables person and address. Where each person can have multiple addresses.
  2. Second will insert records in these tables.
 
-####Step5 - Start server
+#### Step5 - Start server
 On root folder type 
 
 `python manage.py runserver -d`
@@ -74,8 +74,8 @@ To start a production ready server (gunicorn server) `python manage.py runserver
 
 Now APIs are ready to be consumed on default URL `http://0.0.0.0:8088` 
 
-#####Sample APIs are,
-######GET
+##### Sample APIs are,
+###### GET
 1. Get all persons entities.
 
         http://0.0.0.0:8088/person/
@@ -86,7 +86,7 @@ Now APIs are ready to be consumed on default URL `http://0.0.0.0:8088`
 
         http://0.0.0.0:8088/person/1/address/
 
-######POST
+###### POST
 Save person entity.
 
     http://0.0.0.0:8088/person/
@@ -103,7 +103,7 @@ Save person entity.
     "national_identifier": "1110-22-1"
 }`
 
-######PUT
+###### PUT
 Update person entity.
         
     http://0.0.0.0:8088/person/1/
@@ -119,7 +119,7 @@ Update person entity.
     "national_identifier": "1110-22-1"
 }`
 
-######DELETE
+###### DELETE
 To delete a person entity.
         
     http://0.0.0.0:8088/person/1/
