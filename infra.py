@@ -10,7 +10,8 @@ ENV_FILE_PATH = './.env'
 app = Flask(__name__)
 
 dotenv_path = ENV_FILE_PATH
-load_dotenv(dotenv_path)
+# Load .env file and if .env file is not found then will use system environment variables
+load_dotenv(dotenv_path, override=True)
 app.config.from_envvar('FLASK_CONFIG_FILE_PATH')
 
 conf = app.config

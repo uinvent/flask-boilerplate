@@ -49,9 +49,7 @@ Clone the repository,
 #### Step2 - Setup environment configurations
 Create a copy of .env.sample and name it as .env. Fill it with your machine configurations.
 
-APP_DB_* configurations are must to be cofigured as they lead to the database with which APIs would be talking.
-
-Thus create your database which you have mentioned in APP_DB_DATABASE in .env file and confirm connectivity.
+APP_DB_* configurations are must as they lead to your database.
 
 #### Step3 - Install project dependencies
 Install libraries used in project,
@@ -65,6 +63,12 @@ pip install -r requirements.txt
 
 #### Step4 - Run database migrations
 Navigate to root folder and type
+
+`python manage.py init` 
+
+It will create database on the server configured in .env file.
+ 
+ Then run,
  
 `python manage.py db upgrade`
 
