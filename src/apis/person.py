@@ -1,14 +1,16 @@
 """
-Handles Person related APIs
+Handles Person APIs
+Performs request and response serialization and deserialization respectively
+For business logic implementation; it relies on service layer.
 """
 from flask import request
 from infra import app
 from src.apis.utils import json_response, json_error_response
-from src.models import db
-from src.models.person import Person
-import logging
+from src.models import PersonModel
+from src.services.person import PersonService
 
 ROUTE_PREFIX = '/person/'
+person_service = PersonService()
 
 
 @app.route(ROUTE_PREFIX, methods=['GET'])
@@ -19,35 +21,33 @@ def get(person_id=None):
     :param person_id: [id] of the required person
     :return: Return all person entities or the person entity with the [id] matched
     """
-    result = []
-    if not person_id:
-        persons = db.session.query(Person).order_by(Person.id).all()
-        result = [person.serialize for person in persons]
-    else:
-        person = db.session.query(Person).get(person_id)
-        if not person:
-            return json_response('No Result Found')
-        result = person.serialize
-    return json_response(result)
+    try:
+        if not person_id:
+            persons = person_service.get_all()
+            result = [person.serialize for person in persons]
+        else:
+            person = person_service.get(person_id)
+            result = person.serialize
+        return json_response(result)
+    except Exception as e:
+        return json_error_response(e)
 
 
 @app.route(ROUTE_PREFIX + '/<person_id>/address/', methods=['GET'])
-def get_person_address(person_id=None):
+def get_person_address(person_id):
     """
     Get person and its address entities
     :param person_id: [id] of the person to found
     :return: person and its address details
     """
-    result = []
-    if not person_id:
-        raise Exception('Person Id is missing in request.')
-    person = db.session.query(Person).get(person_id)
-    if not person:
-        return json_response('No Result Found')
-    result = person.serialize
-    result['address'] = [address.serialize for address in person.addresses]
+    try:
+        person = person_service.get(person_id)
+        result = person.serialize
+        result['address'] = [address.serialize for address in person.addresses]
+        return json_response(result)
 
-    return json_response(result)
+    except Exception as e:
+        return json_error_response(e)
 
 
 @app.route(ROUTE_PREFIX, methods=['POST'])
@@ -58,13 +58,11 @@ def post():
     """
     form_dict = request.get_json()
     try:
-        new_person = Person()
-        new_person.from_dict(form_dict)
-        db.session.add(new_person)
-        db.session.commit()
-        return json_response(new_person.serialize)
+        person = PersonModel()
+        person.from_dict(form_dict)
+        person = person_service.create(person)
+        return json_response(person.serialize)
     except Exception as e:
-        logging.exception(e)
         return json_error_response(e)
 
 
@@ -76,16 +74,9 @@ def delete(person_id):
     :return: Success response message
     """
     try:
-        if not person_id:
-            return json_response('No Id provided')
-        person = db.session.query(Person).get(person_id)
-        if not person:
-            return json_response('Record not found')
-        db.session.delete(person)
-        db.session.commit()
+        person_service.delete(person_id)
         return json_response('Successfully Deleted')
     except Exception as e:
-        logging.exception(e)
         return json_error_response(e)
 
 
@@ -98,11 +89,9 @@ def update(person_id):
     """
     form_dict = request.get_json()
     try:
-        person = db.session.query(Person).get(person_id)
+        person = person_service.get(person_id)
         person.from_dict(form_dict)
-        db.session.add(person)
-        db.session.commit()
+        person = person_service.update(person)
         return json_response(person.serialize)
     except Exception as e:
-        logging.exception(e)
         return json_error_response(e)

@@ -1,5 +1,5 @@
 """
-Holds shared methods between models
+Handles shared methods between models
 """
 from sqlalchemy import inspect
 from src.models import db

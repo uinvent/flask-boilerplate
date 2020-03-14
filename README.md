@@ -28,12 +28,25 @@ It utilizes below libraries,
 - Standardized Api request and response formats
 
 ## Layered Architecure
-Application is divided in 4 layers.
+Application is divided in 6 layers.
 
-1. Root - It holds infrastructure files, that runs whole application.
-2. APIs - It holds all code files relevant to APIs.
-3. Models - It holds all code files relevant to database models.
-4. Migrations - It holds all code files relevant to database migrations.
+1. Root
+    - Holds infrastructure files, that runs whole application.
+2. APIs 
+    - Provides routing to API
+    - Responsible to serialize request
+    - Direct request to service layer
+    - Deserialize service response
+    - Send it back to the API client.
+3. Services
+    - Responsible to drive business logic
+    - Use repository layer to interact with database
+4. Repositories
+    - Responsible to make queries to database 
+5. Models
+    - It holds definition of database models
+6. Migrations
+    - Responsible for database migrations.
 
 ### Steps to Configure
 
@@ -49,9 +62,7 @@ Clone the repository,
 #### Step2 - Setup environment configurations
 Create a copy of .env.sample and name it as .env. Fill it with your machine configurations.
 
-APP_DB_* configurations are must to be cofigured as they lead to the database with which APIs would be talking.
-
-Thus create your database which you have mentioned in APP_DB_DATABASE in .env file and confirm connectivity.
+APP_DB_* configurations are must as they lead to your database. 
 
 #### Step3 - Install project dependencies
 Install libraries used in project,
@@ -65,6 +76,12 @@ pip install -r requirements.txt
 
 #### Step4 - Run database migrations
 Navigate to root folder and type
+ 
+ `python manage.py init`  
+ 
+It will create database on the server configured in .env file. 
+  
+Then run, 
  
 `python manage.py db upgrade`
 
