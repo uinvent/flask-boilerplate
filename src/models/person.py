@@ -1,12 +1,12 @@
 """
 Person Entity
 """
-from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
+from sqlalchemy import Column, Integer, String, DateTime
 from sqlalchemy.orm import relationship
 from .base import BaseModel
 
 
-class Person(BaseModel):
+class PersonModel(BaseModel):
     __tablename__ = "person"
     id = Column(Integer, primary_key=True, nullable=False)
     first_name = Column(String(100), nullable=False)
@@ -15,7 +15,7 @@ class Person(BaseModel):
     date_of_birth = Column(DateTime(100))
     gender = Column(String(25))
     national_identifier= Column(String(100))
-    addresses = relationship('Address')
+    addresses = relationship('AddressModel')
 
     def from_dict(self, req_dict):
         if req_dict.get('first_name') is None:
