@@ -8,6 +8,18 @@ manager = Manager(app)
 manager.add_command('db', MigrateCommand)
 
 
+@manager.command
+def init():
+    init_db()
+
+
+def init_db():
+    from sqlalchemy_utils.functions import database_exists, create_database
+    engin_uri = app.config.get('SQLALCHEMY_DATABASE_URI')
+    if not database_exists(engin_uri):
+        create_database(engin_uri)
+
+
 @manager.option(
     '-d', '--debug', action='store_true',
     help="Start the web server in debug mode")
