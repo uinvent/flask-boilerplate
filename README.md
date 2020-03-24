@@ -112,6 +112,13 @@ Above command will show the test coverage report.
 
 Above command will run pylint on src folder and will check errors only.  It is using .pylintrc for linting rules.
 
+`tox -e py37`
+
+Above command will run test cases using tox library. 
+
+`tox -e pylint`
+
+Above command will run pylint on all py files including files manage.py, infra.py and conf.py
 
 
 ##### Sample APIs are,
