@@ -75,7 +75,6 @@ pip install -r requirements.txt
 
 
 #### Step4 - Run database migrations
-Navigate to root folder and type
  
  `python manage.py init`  
  
@@ -90,7 +89,6 @@ This will run two migrations,
  2. Second will insert records in these tables.
 
 #### Step5 - Start server
-On root folder type 
 
 `python manage.py runserver -d`
 
@@ -99,6 +97,16 @@ This will start your app server and now APIs are ready to be consumed for debugg
 To start a production ready server (gunicorn server) `python manage.py runserver`
 
 Now APIs are ready to be consumed on default URL `http://0.0.0.0:8088` 
+
+#### Step6 - Run Test
+
+`pytest`
+
+Above command will find all test cases and runs them. Tests are available in /tests/ folder
+
+`pytest --cov=./src/ tests/`
+
+Above command will show the test coverage report.
 
 ##### Sample APIs are,
 ###### GET
@@ -149,3 +157,4 @@ Update person entity.
 To delete a person entity.
         
     http://0.0.0.0:8088/person/1/
+
