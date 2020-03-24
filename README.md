@@ -98,7 +98,7 @@ To start a production ready server (gunicorn server) `python manage.py runserver
 
 Now APIs are ready to be consumed on default URL `http://0.0.0.0:8088` 
 
-#### Step6 - Run Test
+#### Step6 - Run Code Test
 
 `pytest`
 
@@ -107,6 +107,12 @@ Above command will find all test cases and runs them. Tests are available in /te
 `pytest --cov=./src/ tests/`
 
 Above command will show the test coverage report.
+
+`pylint src --errors-only`
+
+Above command will run pylint on src folder and will check errors only.  It is using .pylintrc for linting rules.
+
+
 
 ##### Sample APIs are,
 ###### GET
