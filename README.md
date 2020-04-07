@@ -1,7 +1,7 @@
-# flask_boilerplate
-A repository with goal to make a flask API developer life easier, thus not only integrates libraries but also covered a simple API implementation.
+# Flask + SqlAlchemy + PyTest + Tox + Docker Boilerplate
+A repository to facilitate API developers, thus it integrate reputable libraries, cover their functional aspects and follows good engineering practices.
 
-It utilizes below libraries,
+These libraries are,
 1. Flask SqlAlchemy (Wrapper on SqlAlchemy)
 2. Flask Migrate (Wrapper on Alembic)
 3. Flask Manager (Wrapper on Flask Scripts)
@@ -9,10 +9,11 @@ It utilizes below libraries,
 5. Psycopg2 to interact with Postgres instance
 6. PyTest integrated for APIs functionality tests
 7. PyTest-cov integrated for test coverage report
-7. PyLint integrated to test code quality
-8. Tox integrated to test different app on different environments
+8. PyLint integrated to test code quality
+9. Tox integrated to test different app on different environments
+10. Docker integrated
 
-**Unique selling point**
+# **Hot Selling Point**
 - End to end CRUD implementation on a model.
 - For **rapid application development**, each layer has a **Base Class** and CRUD functionality is already there.
 - Supports environment specific configuration using .env file.
@@ -43,19 +44,19 @@ Application is divided in 6 layers.
 
 ### Steps to Configure
 
-#### Dependencies
-Postgresql instance is up and running
-Python 3+ is installed
+#### Assumptions
+- Postgresql instance is up and running
+- Python 3.7+ is installed
 
 #### Step1 - Clone repository
-Clone the repository,
+Clone repository,
 
 ```git clone https://github.com/uinvent/flask_boilerplate.git```
 
 #### Step2 - Setup environment configurations
 Create a copy of .env.sample and name it as .env. Fill it with your machine configurations.
 
-APP_DB_* configurations are must as they lead to your database. 
+APP_DB_* configurations are must as they lead to your database.
 
 #### Step3 - Install project dependencies
 Install libraries used in project,
@@ -118,6 +119,18 @@ Above command will run test cases using tox library.
 `tox -e pylint`
 
 Above command will run pylint on all py files including files manage.py, infra.py and conf.py
+
+
+#### Step7 - Create Flask Docker
+Install docker package on your machine. Once installed, execute below command.
+
+
+    `bash docker-startup.sh`
+
+_You might need to make some changes at your database; to make it accessible over network._
+
+
+Above will start application instance on docker and it should be accessible at port 8000.
 
 
 ##### Sample APIs are,
