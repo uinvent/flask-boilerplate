@@ -1,4 +1,4 @@
-# Flask + SqlAlchemy + PyTest + Tox + Docker Boilerplate
+# Flask + SqlAlchemy + Docker + PyTest + PyLint + Tox Boilerplate
 A repository to facilitate API developers, thus it integrate reputable libraries, cover their functional aspects and follows good engineering practices.
 
 These libraries are,
@@ -11,9 +11,9 @@ These libraries are,
 7. PyTest-cov integrated for test coverage report
 8. PyLint integrated to test code quality
 9. Tox integrated to test different app on different environments
-10. Docker integrated
+10. Docker integratef to dockerize the flask app
 
-# **Hot Selling Point**
+# Why another boilerplate??
 - End to end CRUD implementation on a model.
 - For **rapid application development**, each layer has a **Base Class** and CRUD functionality is already there.
 - Supports environment specific configuration using .env file.
