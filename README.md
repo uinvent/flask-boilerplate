@@ -7,25 +7,18 @@ It utilizes below libraries,
 3. Flask Manager (Wrapper on Flask Scripts)
 4. Gunicorn (Web Server)
 5. Psycopg2 to interact with Postgres instance
+6. PyTest integrated for APIs functionality tests
+7. PyTest-cov integrated for test coverage report
+7. PyLint integrated to test code quality
+8. Tox integrated to test different app on different environments
 
-**Features**
-- Complete end to end implementation of a CRUD user story.
-- It supports environment specific configuration using .env file.
-- Keeps isolation of concern to some extent using layered architecture, thus provides place to write new migrations, new data base models and API.
-- Gives brief example of serializing SqlAlchemy object to JSON.
+**Unique selling point**
+- End to end CRUD implementation on a model.
+- For **rapid application development**, each layer has a **Base Class** and CRUD functionality is already there.
+- Supports environment specific configuration using .env file.
 - Logging of web request and exceptions.
-
-**Future Plans**
-- Unit test case library integration.
-- Test coverage status pre-commit hook
-- Integration with pylint as a pre-commit hook
-- Release management e.g. version update
-- Docker based setup [Docker and Docker Compose]
-- Flask CORS integration
-- Flask CSRF integration
-- Authentication and authorization setup using any oauth server e.g. keycloak
-- Integration with swagger
-- Standardized Api request and response formats
+- PyTest, PyTestCov, PyLint and Tox complete integration.
+- Code is self explanatory; and comments added where needed.
 
 ## Layered Architecure
 Application is divided in 6 layers.
