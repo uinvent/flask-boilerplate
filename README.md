@@ -82,6 +82,12 @@ It will create database on the server configured in .env file.
   
 Then run, 
  
+ `python manage.py init`  
+ 
+It will create database on the server configured in .env file. 
+  
+Then run, 
+ 
 `python manage.py db upgrade`
 
 This will run two migrations,
