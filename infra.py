@@ -20,8 +20,8 @@ from src.apis import register_api
 register_api()
 
 if not app.debug:
-    app.logger.addHandler(logging.StreamHandler())
-    app.logger.setLevel(logging.INFO)
+    logging.getLogger(app.name).addHandler(logging.StreamHandler())
+    logging.getLogger(app.name).setLevel(logging.INFO)
 
 db.init_app(app)
 migrate.init_app(app, db, directory=os.environ['MIGRATION_FOLDER_PATH'])

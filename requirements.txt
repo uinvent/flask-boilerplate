@@ -17,3 +17,7 @@ Werkzeug==1.0.0
 sqlalchemy-utils==0.36.1
 python-dotenv==0.12.0
 simplejson==3.17.0
+pytest==5.4.1
+pytest-cov==2.8.1
+pylint==2.4.4
+tox==3.14.5
